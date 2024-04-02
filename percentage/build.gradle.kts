@@ -1,9 +1,20 @@
+import org.jetbrains.dokka.gradle.DokkaTaskPartial
+import java.net.URL
+
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.android.library)
 
     alias(libs.plugins.detekt)
+
+    alias(libs.plugins.dokka)
+
+    id("maven-publish")
+    id("signing")
 }
+
+group = findProperty("group")!!
+version = findProperty("version")!!
 
 android {
     namespace = "com.boswelja.percentage"
@@ -47,4 +58,67 @@ detekt {
     buildUponDefaultConfig = true
     config.setFrom("$rootDir/config/detekt.yml")
     basePath = rootDir.absolutePath
+}
+
+publishing {
+    repositories {
+        if (System.getenv("PUBLISHING") == "true") {
+            maven("https://maven.pkg.github.com/boswelja/kotlin-datatypes") {
+                val githubUsername: String? by project.properties
+                val githubToken: String? by project.properties
+                name = "github"
+                credentials {
+                    username = githubUsername
+                    password = githubToken
+                }
+            }
+            maven("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                val ossrhUsername: String? by project
+                val ossrhPassword: String? by project
+                name = "oss"
+                credentials {
+                    username = ossrhUsername
+                    password = ossrhPassword
+                }
+            }
+        }
+    }
+
+    publications.withType<MavenPublication> {
+        pom {
+            name = "percentage"
+            description = "A Percentage class that allows you to convert between the most common percentage formats"
+            url = "https://github.com/boswelja/kotlin-datatypes/tree/main/percentage"
+            licenses {
+                license {
+                    name = "MIT"
+                    url = "https://github.com/boswelja/kotlin-datatypes/blob/main/LICENSE"
+                }
+            }
+            developers {
+                developer {
+                    id = "boswelja"
+                    name = "Jack Boswell (boswelja)"
+                    email = "boswelja@outlook.com"
+                    url = "https://github.com/boswelja"
+                }
+            }
+            scm {
+                connection.set("scm:git:github.com/boswelja/kotlin-datatypes.git")
+                developerConnection.set("scm:git:ssh://github.com/boswelja/kotlin-datatypes.git")
+                url.set("https://github.com/boswelja/kotlin-datatypes")
+            }
+        }
+    }
+}
+
+tasks.withType<DokkaTaskPartial>().configureEach {
+    dokkaSourceSets.configureEach {
+        includes.from("MODULE.md")
+        sourceLink {
+            localDirectory.set(projectDir.resolve("src"))
+            remoteUrl.set(URL("https://github.com/boswelja/kotlin-datatypes/tree/main/percentage/src"))
+            remoteLineSuffix.set("#L")
+        }
+    }
 }
