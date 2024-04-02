@@ -1,0 +1,13 @@
+workflows:
+  - .github/**/*.yml
+documentation:
+  - '**/*.md'
+dependencies:
+  - gradle/libs.versions.toml
+
+capacity:
+  - caoacity/**
+percentage:
+  - percentage/**
+temperature:
+  - temperature/**
