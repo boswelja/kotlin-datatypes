@@ -1,0 +1,15 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+/deploymentTargetDropDown.xml
+
+/artifacts/
+/codeStyles/
+/appInsightsSettings.xml
+/discord.xml
+/compiler.xml
+/gradle.xml
+/kotlinc.xml
+/migrations.xml
+/misc.xml
+/deploymentTargetSelector.xml
