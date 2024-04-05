@@ -29,6 +29,7 @@ plugins {
 rootProject.name = "kotlin-datatypes"
 
 include(
+    ":bitrate",
     ":capacity",
     ":percentage",
     ":temperature"
