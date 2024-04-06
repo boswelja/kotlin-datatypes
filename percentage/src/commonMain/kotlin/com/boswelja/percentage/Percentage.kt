@@ -1,6 +1,7 @@
 package com.boswelja.percentage
 
 import com.boswelja.percentage.Percentage.Companion.percent
+import kotlin.jvm.JvmInline
 import kotlin.math.roundToInt
 
 /**

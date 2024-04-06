@@ -5,3 +5,7 @@ plugins {
 
     alias(libs.plugins.dokka)
 }
+
+repositories {
+    mavenCentral()
+}

@@ -1,5 +1,6 @@
 package com.boswelja.capacity
 
+import kotlin.jvm.JvmInline
 import kotlin.math.roundToLong
 
 /**

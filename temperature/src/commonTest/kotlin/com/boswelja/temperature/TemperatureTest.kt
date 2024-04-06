@@ -67,7 +67,7 @@ class TemperatureTest {
     }
 
     @Test
-    fun `converting kelvin between water freezing points`() {
+    fun convertingKelvinBetweenWaterFreezingPoints() {
         testAgainstTestPoint(
             WATER_FREEZING.kelvin.kelvin,
             WATER_FREEZING
@@ -75,7 +75,7 @@ class TemperatureTest {
     }
 
     @Test
-    fun `converting celsius between water freezing points`() {
+    fun convertingCelsiusBetweenWaterFreezingPoints() {
         testAgainstTestPoint(
             WATER_FREEZING.celsius.celsius,
             WATER_FREEZING
@@ -83,7 +83,7 @@ class TemperatureTest {
     }
 
     @Test
-    fun `converting fahrenheit between water freezing points`() {
+    fun convertingFahrenheitBetweenWaterFreezingPoints() {
         testAgainstTestPoint(
             WATER_FREEZING.fahrenheit.fahrenheit,
             WATER_FREEZING
@@ -91,7 +91,7 @@ class TemperatureTest {
     }
 
     @Test
-    fun `converting rankine between water freezing points`() {
+    fun convertingRankineBetweenWaterFreezingPoints() {
         testAgainstTestPoint(
             WATER_FREEZING.rankine.rankine,
             WATER_FREEZING
@@ -99,7 +99,7 @@ class TemperatureTest {
     }
 
     @Test
-    fun `converting reaumur between water freezing points`() {
+    fun convertingReaumurBetweenWaterFreezingPoints() {
         testAgainstTestPoint(
             WATER_FREEZING.reaumur.reaumur,
             WATER_FREEZING
@@ -107,7 +107,7 @@ class TemperatureTest {
     }
 
     @Test
-    fun `converting kelvin between water boiling points`() {
+    fun convertingKelvinBetweenWaterBoilingPoints() {
         testAgainstTestPoint(
             WATER_BOILING.kelvin.kelvin,
             WATER_BOILING
@@ -115,7 +115,7 @@ class TemperatureTest {
     }
 
     @Test
-    fun `converting celsius between water boiling points`() {
+    fun convertingCelsiusBetweenWaterBoilingPoints() {
         testAgainstTestPoint(
             WATER_BOILING.celsius.celsius,
             WATER_BOILING
@@ -123,7 +123,7 @@ class TemperatureTest {
     }
 
     @Test
-    fun `converting fahrenheit between water boiling points`() {
+    fun convertingFahrenheitBetweenWaterBoilingPoints() {
         testAgainstTestPoint(
             WATER_BOILING.fahrenheit.fahrenheit,
             WATER_BOILING
@@ -131,7 +131,7 @@ class TemperatureTest {
     }
 
     @Test
-    fun `converting rankine between water boiling points`() {
+    fun convertingRankineBetweenWaterBoilingPoints() {
         testAgainstTestPoint(
             WATER_BOILING.rankine.rankine,
             WATER_BOILING
@@ -139,7 +139,7 @@ class TemperatureTest {
     }
 
     @Test
-    fun `converting reaumur between water boiling points`() {
+    fun convertingReaumurBetweenWaterBoilingPoints() {
         testAgainstTestPoint(
             WATER_BOILING.reaumur.reaumur,
             WATER_BOILING
