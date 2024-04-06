@@ -38,7 +38,7 @@ class PercentageTest {
     )
 
     @Test
-    fun `100 percent is mapped correctly`() {
+    fun oneHundredPercentIsMappedCorrectly() {
         testValue(
             1.0f.percent,
             ONE_HUNDRED_PERCENT
@@ -54,7 +54,7 @@ class PercentageTest {
     }
 
     @Test
-    fun `200 percent is mapped correctly`() {
+    fun twoHundredPercentIsMappedCorrectly() {
         testValue(
             2.0f.percent,
             TWO_HUNDRED_PERCENT
@@ -70,7 +70,7 @@ class PercentageTest {
     }
 
     @Test
-    fun `0 percent is mapped correctly`() {
+    fun zeroPercentIsMappedCorrectly() {
         testValue(
             0f.percent,
             ZERO_PERCENT

@@ -1,5 +1,6 @@
 package com.boswelja.bitrate
 
+import kotlin.jvm.JvmInline
 import kotlin.math.roundToLong
 
 /**

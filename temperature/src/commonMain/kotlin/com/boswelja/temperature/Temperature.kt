@@ -2,6 +2,7 @@ package com.boswelja.temperature
 
 import com.ionspin.kotlin.bignum.decimal.BigDecimal
 import com.ionspin.kotlin.bignum.decimal.toBigDecimal
+import kotlin.jvm.JvmInline
 import kotlin.math.roundToLong
 
 /**
