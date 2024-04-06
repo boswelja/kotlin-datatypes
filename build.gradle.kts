@@ -3,7 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.multiplatform) apply false
     alias(libs.plugins.detekt) apply false
 
-    alias(libs.plugins.dokka)
+    id("org.jetbrains.dokka")
 }
 
 repositories {
