@@ -61,6 +61,13 @@ detekt {
     basePath = rootDir.absolutePath
 }
 
+signing {
+    val signingKey: String? by project
+    val signingPassword: String? by project
+    useInMemoryPgpKeys(signingKey, signingPassword)
+    sign(publishing.publications)
+}
+
 publishing {
     repositories {
         if (System.getenv("PUBLISHING") == "true") {
