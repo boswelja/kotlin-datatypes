@@ -61,21 +61,30 @@ detekt {
     basePath = rootDir.absolutePath
 }
 
+signing {
+    val signingKey: String? by project
+    val signingPassword: String? by project
+    useInMemoryPgpKeys(signingKey, signingPassword)
+    sign(publishing.publications)
+}
+
 publishing {
     repositories {
-        if (System.getenv("PUBLISHING") == "true") {
+        val githubUsername = findProperty("githubUsername")?.toString()
+        val githubToken = findProperty("githubToken")?.toString()
+        if (githubUsername != null && githubToken != null) {
             maven("https://maven.pkg.github.com/boswelja/kotlin-datatypes") {
-                val githubUsername: String? by project.properties
-                val githubToken: String? by project.properties
                 name = "github"
                 credentials {
                     username = githubUsername
                     password = githubToken
                 }
             }
+        }
+        val ossrhUsername = findProperty("ossrhUsername")?.toString()
+        val ossrhPassword = findProperty("ossrhPassword")?.toString()
+        if (ossrhUsername != null && ossrhPassword != null) {
             maven("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                val ossrhUsername: String? by project
-                val ossrhPassword: String? by project
                 name = "oss"
                 credentials {
                     username = ossrhUsername
