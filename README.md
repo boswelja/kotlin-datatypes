@@ -4,6 +4,8 @@ A collection of Kotlin Multiplatform libraries to represent complex data types.
 
 ## What's available?
 
+[Bitrate](./bitrate) for reading from and converting to units of digital data transfer, for example Mebibits per second to Gibibits per second.
+
 [Capacity](./capacity) for reading from and converting to digital storage types, for example Megabytes to Gigabytes.
 
 [Percentage](./percentage) for reading from and converting to the most common percentage formats, for example `1.0f` to `100`.
