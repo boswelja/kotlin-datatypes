@@ -16,8 +16,9 @@ Stay tuned for setup instructions.
 
 ## Platform support
 
-All libraries currently support JVM and Android. There are no blockers for other platforms, we just
-need to figure out publishing.
+All libraries currently support Android, iOS, macOS, tvOS, watchOS, JVM, Linux, Windows and WASM-JS.
+For now, they are only accessible from Kotlin Multiplatform projects.
+We are exploring publishing native libraries for use directly in other languages.
 
 ## Why?
 
