@@ -2,6 +2,8 @@
 
 A collection of Kotlin Multiplatform libraries to represent complex data types.
 
+Check out [the docs](https://boswelja.github.io/kotlin-datatypes/) for details!
+
 ## What's available?
 
 [Bitrate](./bitrate) for reading from and converting to units of digital data transfer, for example Mebibits per second to Gibibits per second.
@@ -14,7 +16,27 @@ A collection of Kotlin Multiplatform libraries to represent complex data types.
 
 ## Setup
 
-Stay tuned for setup instructions.
+```kt
+kotlin {
+    sourceSets {
+        commonMain.dependencies {
+            val datatypesVersion = "1.3.2"
+
+            // Add dependency on Bitrate
+            implementation("io.github.boswelja.datatypes:bitrate:$datatypesVersion")
+
+            // Add dependency on Capacity
+            implementation("io.github.boswelja.datatypes:capacity:$datatypesVersion")
+
+            // Add dependency on Percentage
+            implementation("io.github.boswelja.datatypes:percentage:$datatypesVersion")
+
+            // Add dependency on Temperature
+            implementation("io.github.boswelja.datatypes:temperature:$datatypesVersion")
+        }
+    }
+}
+```
 
 ## Platform support
 
