@@ -94,7 +94,7 @@ jobs:
 
   deploy-pages:
     runs-on: macos-latest
-    needs: upload-pages
+    needs: build-pages
     permissions:
       pages: write
       id-token: write
