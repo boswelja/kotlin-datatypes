@@ -1,9 +1,4 @@
-import org.jetbrains.dokka.gradle.DokkaTask
-import org.jetbrains.dokka.gradle.DokkaTaskPartial
-import java.net.URL
-
 plugins {
-    id("org.jetbrains.dokka")
     id("maven-publish")
     id("signing")
 }
@@ -26,13 +21,11 @@ signing {
     sign(publishing.publications)
 }
 
-val javadocJar by tasks.registering(Jar::class) {
-    dependsOn(tasks.dokkaHtml)
-    from(tasks.dokkaHtml.flatMap(DokkaTask::outputDirectory))
-    archiveClassifier = "javadoc"
-}
-
 afterEvaluate {
+    val javadocJar by tasks.registering(Jar::class) {
+        archiveClassifier = "javadoc"
+    }
+
     publishing {
         repositories {
             val githubUsername = findProperty("githubUsername")?.toString()
