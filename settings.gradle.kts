@@ -24,6 +24,7 @@ rootProject.name = "kotlin-datatypes"
 include(
     ":bitrate",
     ":capacity",
+    ":length",
     ":percentage",
     ":temperature"
 )
