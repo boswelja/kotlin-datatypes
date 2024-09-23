@@ -1,10 +1,10 @@
 [versions]
-android-gradle-plugin = "8.3.1"
-detekt = "1.23.6"
-kotlin = "2.0.0"
+android-gradle-plugin = "8.6.1"
+detekt = "1.23.7"
+kotlin = "2.0.20"
 dokka = "1.9.20"
 
-bignum = "0.3.9"
+bignum = "0.3.10"
 
 [libraries]
 ionspin-bignum = { module = "com.ionspin.kotlin:bignum", version.ref = "bignum" }
