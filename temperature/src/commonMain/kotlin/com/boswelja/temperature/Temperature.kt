@@ -39,6 +39,7 @@ value class Temperature internal constructor(private val kelvin: BigDecimal) : C
      * Converts this Temperature to the given [TemperatureUnit], returning a Double representing the
      * precise value.
      */
+    @Deprecated("Use toFractionalUnits instead", ReplaceWith("toFractionalUnits(unit)"))
     fun toDouble(unit: TemperatureUnit): Double {
         return unit.fromKelvin(kelvin).doubleValue(exactRequired = false)
     }
@@ -46,8 +47,30 @@ value class Temperature internal constructor(private val kelvin: BigDecimal) : C
     /**
      * Converts this Temperature to the given [TemperatureUnit], rounding to the nearest whole number.
      */
+    @Deprecated("Use toWholeUnits or roundToWholeUnits instead", ReplaceWith("roundToWholeUnits(unit)"))
     fun toLong(unit: TemperatureUnit): Long {
-        return toDouble(unit).roundToLong()
+        return toFractionalUnits(unit).roundToLong()
+    }
+
+    /**
+     * Converts this Capacity to the given [TemperatureUnit], returning a Double representing the precise value.
+     */
+    fun toFractionalUnits(unit: TemperatureUnit): Double {
+        return unit.fromKelvin(kelvin).doubleValue(exactRequired = false)
+    }
+
+    /**
+     * Converts this Capacity to the given [TemperatureUnit], rounding down to the nearest whole number.
+     */
+    fun toWholeUnits(unit: TemperatureUnit): Long {
+        return unit.fromKelvin(kelvin).longValue(exactRequired = false)
+    }
+
+    /**
+     * Converts this Capacity to the given [TemperatureUnit], rounding to the nearest whole number.
+     */
+    fun roundToWholeUnits(unit: TemperatureUnit): Long {
+        return toFractionalUnits(unit).roundToLong()
     }
 
     @Suppress("unused")
