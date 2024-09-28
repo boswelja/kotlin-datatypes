@@ -45,7 +45,7 @@ value class Capacity internal constructor(private val rawValue: Long) : Comparab
      * Converts this Capacity to the given [CapacityUnit], returning a Double representing the
      * precise value.
      */
-    @Deprecated("Use inFractionalUnits instead", ReplaceWith("inFractionalUnits(unit)"))
+    @Deprecated("Use toFractionalUnits instead", ReplaceWith("toFractionalUnits(unit)"))
     fun toDouble(unit: CapacityUnit): Double {
         return toFractionalUnits(unit)
     }
@@ -53,9 +53,9 @@ value class Capacity internal constructor(private val rawValue: Long) : Comparab
     /**
      * Converts this Capacity to the given [CapacityUnit], rounding to the nearest whole number.
      */
-    @Deprecated("Use inWholeUnits or roundToWholeUnits instead", ReplaceWith("roundToWholeUnits(unit)"))
+    @Deprecated("Use toWholeUnits or roundToWholeUnits instead", ReplaceWith("roundToWholeUnits(unit)"))
     fun toLong(unit: CapacityUnit): Long {
-        return toFractionalUnits(unit).roundToLong()
+        return roundToWholeUnits(unit)
     }
 
     /**
