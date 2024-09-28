@@ -17,6 +17,12 @@ import kotlin.math.roundToLong
 @JvmInline
 value class Capacity internal constructor(private val rawValue: Long) : Comparable<Capacity> {
 
+    /**
+     * Returns the value of this Capacity in bytes.
+     */
+    val inWholeBytes: Long
+        get() = rawValue
+
     override fun compareTo(other: Capacity): Int {
         return rawValue.compareTo(other.rawValue)
     }
@@ -45,18 +51,18 @@ value class Capacity internal constructor(private val rawValue: Long) : Comparab
     }
 
     /**
-     * Converts this Capacity to the given [CapacityUnit], returning a Double representing the precise value.
-     */
-    fun toFractionalUnits(unit: CapacityUnit): Double {
-        return rawValue.toDouble() / unit.byteFactor
-    }
-
-    /**
      * Converts this Capacity to the given [CapacityUnit], rounding to the nearest whole number.
      */
     @Deprecated("Use inWholeUnits or roundToWholeUnits instead", ReplaceWith("roundToWholeUnits(unit)"))
     fun toLong(unit: CapacityUnit): Long {
         return toFractionalUnits(unit).roundToLong()
+    }
+
+    /**
+     * Converts this Capacity to the given [CapacityUnit], returning a Double representing the precise value.
+     */
+    fun toFractionalUnits(unit: CapacityUnit): Double {
+        return rawValue.toDouble() / unit.byteFactor
     }
 
     /**
