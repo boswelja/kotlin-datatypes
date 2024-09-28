@@ -38,6 +38,7 @@ value class Bitrate internal constructor(private val rawValue: Long) : Comparabl
      * Converts this Bitrate to the given [BitrateUnit], returning a Double representing the
      * precise value.
      */
+    @Deprecated("Use toFractionalUnits instead", ReplaceWith("toFractionalUnits(unit)"))
     fun toDouble(unit: BitrateUnit): Double {
         return rawValue.toDouble() / unit.bitFactor
     }
@@ -45,8 +46,30 @@ value class Bitrate internal constructor(private val rawValue: Long) : Comparabl
     /**
      * Converts this Bitrate to the given [BitrateUnit], rounding to the nearest whole number.
      */
+    @Deprecated("Use toWholeUnits or roundToWholeUnits instead", ReplaceWith("roundToWholeUnits(unit)"))
     fun toLong(unit: BitrateUnit): Long {
-        return toDouble(unit).roundToLong()
+        return roundToWholeUnits(unit)
+    }
+
+    /**
+     * Converts this Capacity to the given [CapacityUnit], returning a Double representing the precise value.
+     */
+    fun toFractionalUnits(unit: BitrateUnit): Double {
+        return rawValue.toDouble() / unit.bitFactor
+    }
+
+    /**
+     * Converts this Capacity to the given [CapacityUnit], rounding down to the nearest whole number.
+     */
+    fun toWholeUnits(unit: BitrateUnit): Long {
+        return rawValue / unit.bitFactor
+    }
+
+    /**
+     * Converts this Capacity to the given [CapacityUnit], rounding to the nearest whole number.
+     */
+    fun roundToWholeUnits(unit: BitrateUnit): Long {
+        return toFractionalUnits(unit).roundToLong()
     }
 
     @Suppress("unused")

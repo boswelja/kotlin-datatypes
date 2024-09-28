@@ -12,26 +12,54 @@ import kotlin.test.assertTrue
 class BitrateTest {
 
     @Test
-    fun toLong_roundsDownCorrectly() {
+    fun roundToWholeUnits_roundsDownCorrectly() {
         assertEquals(
             1,
-            1.5.terabits.toLong(BitrateUnit.TEBIBITS)
+            1.5.terabits.roundToWholeUnits(BitrateUnit.TEBIBITS)
         )
         assertEquals(
             1,
-            1.49.terabits.toLong(BitrateUnit.TERABITS)
+            1.49.terabits.roundToWholeUnits(BitrateUnit.TERABITS)
+        )
+        assertEquals(
+            1,
+            1.01.terabits.roundToWholeUnits(BitrateUnit.TERABITS)
         )
     }
 
     @Test
-    fun toLong_roundsUpCorrectly() {
+    fun roundToWholeUnits_roundsUpCorrectly() {
         assertEquals(
             2,
-            1.5.tebibits.toLong(BitrateUnit.TERABITS)
+            1.51.terabits.roundToWholeUnits(BitrateUnit.TERABITS)
         )
         assertEquals(
             2,
-            1.5.tebibits.toLong(BitrateUnit.TERABITS)
+            1.9.terabits.roundToWholeUnits(BitrateUnit.TERABITS)
+        )
+    }
+
+    @Test
+    fun toWholeUnits_roundsCorrectly() {
+        assertEquals(
+            1,
+            1.5.terabits.toWholeUnits(BitrateUnit.TEBIBITS)
+        )
+        assertEquals(
+            1,
+            1.49.terabits.toWholeUnits(BitrateUnit.TERABITS)
+        )
+        assertEquals(
+            1,
+            1.01.terabits.toWholeUnits(BitrateUnit.TERABITS)
+        )
+        assertEquals(
+            1,
+            1.51.terabits.toWholeUnits(BitrateUnit.TERABITS)
+        )
+        assertEquals(
+            1,
+            1.9.terabits.toWholeUnits(BitrateUnit.TERABITS)
         )
     }
 
