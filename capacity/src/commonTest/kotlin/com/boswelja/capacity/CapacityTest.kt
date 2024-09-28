@@ -3,7 +3,6 @@ package com.boswelja.capacity
 import com.boswelja.capacity.Capacity.Companion.bytes
 import com.boswelja.capacity.Capacity.Companion.gigabytes
 import com.boswelja.capacity.Capacity.Companion.kibibytes
-import com.boswelja.capacity.Capacity.Companion.tebibytes
 import com.boswelja.capacity.Capacity.Companion.terabytes
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -12,26 +11,54 @@ import kotlin.test.assertTrue
 class CapacityTest {
 
     @Test
-    fun toLong_roundsDownCorrectly() {
+    fun roundToWholeUnits_roundsDownCorrectly() {
         assertEquals(
             1,
-            1.5.terabytes.toLong(CapacityUnit.TEBIBYTE)
+            1.5.terabytes.roundToWholeUnits(CapacityUnit.TEBIBYTE)
         )
         assertEquals(
             1,
-            1.49.terabytes.toLong(CapacityUnit.TERABYTE)
+            1.49.terabytes.roundToWholeUnits(CapacityUnit.TERABYTE)
+        )
+        assertEquals(
+            1,
+            1.01.terabytes.roundToWholeUnits(CapacityUnit.TERABYTE)
         )
     }
 
     @Test
-    fun toLong_roundsUpCorrectly() {
+    fun roundToWholeUnits_roundsUpCorrectly() {
         assertEquals(
             2,
-            1.5.tebibytes.toLong(CapacityUnit.TERABYTE)
+            1.51.terabytes.roundToWholeUnits(CapacityUnit.TERABYTE)
         )
         assertEquals(
             2,
-            1.5.terabytes.toLong(CapacityUnit.TERABYTE)
+            1.9.terabytes.roundToWholeUnits(CapacityUnit.TERABYTE)
+        )
+    }
+
+    @Test
+    fun inWholeUnits_roundsDownCorrectly() {
+        assertEquals(
+            1,
+            1.5.terabytes.inWholeUnits(CapacityUnit.TEBIBYTE)
+        )
+        assertEquals(
+            1,
+            1.49.terabytes.inWholeUnits(CapacityUnit.TERABYTE)
+        )
+        assertEquals(
+            1,
+            1.01.terabytes.inWholeUnits(CapacityUnit.TERABYTE)
+        )
+        assertEquals(
+            1,
+            1.51.terabytes.inWholeUnits(CapacityUnit.TERABYTE)
+        )
+        assertEquals(
+            1,
+            1.9.terabytes.inWholeUnits(CapacityUnit.TERABYTE)
         )
     }
 
