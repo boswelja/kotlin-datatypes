@@ -42,23 +42,23 @@ class CapacityTest {
     fun inWholeUnits_roundsDownCorrectly() {
         assertEquals(
             1,
-            1.5.terabytes.inWholeUnits(CapacityUnit.TEBIBYTE)
+            1.5.terabytes.toWholeUnits(CapacityUnit.TEBIBYTE)
         )
         assertEquals(
             1,
-            1.49.terabytes.inWholeUnits(CapacityUnit.TERABYTE)
+            1.49.terabytes.toWholeUnits(CapacityUnit.TERABYTE)
         )
         assertEquals(
             1,
-            1.01.terabytes.inWholeUnits(CapacityUnit.TERABYTE)
+            1.01.terabytes.toWholeUnits(CapacityUnit.TERABYTE)
         )
         assertEquals(
             1,
-            1.51.terabytes.inWholeUnits(CapacityUnit.TERABYTE)
+            1.51.terabytes.toWholeUnits(CapacityUnit.TERABYTE)
         )
         assertEquals(
             1,
-            1.9.terabytes.inWholeUnits(CapacityUnit.TERABYTE)
+            1.9.terabytes.toWholeUnits(CapacityUnit.TERABYTE)
         )
     }
 

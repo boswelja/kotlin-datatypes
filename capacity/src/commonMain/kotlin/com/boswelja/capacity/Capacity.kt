@@ -41,13 +41,13 @@ value class Capacity internal constructor(private val rawValue: Long) : Comparab
      */
     @Deprecated("Use inFractionalUnits instead", ReplaceWith("inFractionalUnits(unit)"))
     fun toDouble(unit: CapacityUnit): Double {
-        return inFractionalUnits(unit)
+        return toFractionalUnits(unit)
     }
 
     /**
      * Converts this Capacity to the given [CapacityUnit], returning a Double representing the precise value.
      */
-    fun inFractionalUnits(unit: CapacityUnit): Double {
+    fun toFractionalUnits(unit: CapacityUnit): Double {
         return rawValue.toDouble() / unit.byteFactor
     }
 
@@ -56,13 +56,13 @@ value class Capacity internal constructor(private val rawValue: Long) : Comparab
      */
     @Deprecated("Use inWholeUnits or roundToWholeUnits instead", ReplaceWith("roundToWholeUnits(unit)"))
     fun toLong(unit: CapacityUnit): Long {
-        return inFractionalUnits(unit).roundToLong()
+        return toFractionalUnits(unit).roundToLong()
     }
 
     /**
      * Converts this Capacity to the given [CapacityUnit], rounding down to the nearest whole number.
      */
-    fun inWholeUnits(unit: CapacityUnit): Long {
+    fun toWholeUnits(unit: CapacityUnit): Long {
         return rawValue / unit.byteFactor
     }
 
@@ -70,7 +70,7 @@ value class Capacity internal constructor(private val rawValue: Long) : Comparab
      * Converts this Capacity to the given [CapacityUnit], rounding to the nearest whole number.
      */
     fun roundToWholeUnits(unit: CapacityUnit): Long {
-        return inFractionalUnits(unit).roundToLong()
+        return toFractionalUnits(unit).roundToLong()
     }
 
     @Suppress("unused")
