@@ -1,3 +1,3 @@
-# Module distance
+# Module length
 
-Store and convert between units of distance. For example, `1"` --> `2.54 cm`.
+Store and convert between measurements of length. For example, `1"` --> `2.54 cm`.
