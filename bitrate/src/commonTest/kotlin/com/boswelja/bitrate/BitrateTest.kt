@@ -3,7 +3,6 @@ package com.boswelja.bitrate
 import com.boswelja.bitrate.Bitrate.Companion.bits
 import com.boswelja.bitrate.Bitrate.Companion.gigabits
 import com.boswelja.bitrate.Bitrate.Companion.kibibits
-import com.boswelja.bitrate.Bitrate.Companion.tebibits
 import com.boswelja.bitrate.Bitrate.Companion.terabits
 import kotlin.test.Test
 import kotlin.test.assertEquals
