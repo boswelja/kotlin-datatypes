@@ -20,7 +20,7 @@ Check out [the docs](https://boswelja.github.io/kotlin-datatypes/) for details!
 kotlin {
     sourceSets {
         commonMain.dependencies {
-            val datatypesVersion = "1.3.2"
+            val datatypesVersion = "1.1.0"
 
             // Add dependency on Bitrate
             implementation("io.github.boswelja.datatypes:bitrate:$datatypesVersion")
