@@ -15,7 +15,7 @@ import kotlin.math.roundToLong
  * [toFractionalUnits], [roundToWholeUnits], and so on.
  */
 @JvmInline
-value class Length(val meters: BigDecimal): Comparable<Length> {
+value class Length(private val meters: BigDecimal): Comparable<Length> {
     override fun compareTo(other: Length): Int {
         return meters.compareTo(other.meters)
     }
