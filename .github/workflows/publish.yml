@@ -86,7 +86,7 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
       - name: Build
-        run: ./gradlew dokkaHtmlMultiModule
+        run: ./gradlew dokkaGenerate
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
