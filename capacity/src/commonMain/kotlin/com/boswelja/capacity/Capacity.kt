@@ -82,165 +82,61 @@ value class Capacity internal constructor(private val rawValue: Long) : Comparab
     @Suppress("unused")
     companion object {
 
-        private fun Int.toCapacity(unit: CapacityUnit): Capacity = Capacity(this * unit.byteFactor)
-        private fun Long.toCapacity(unit: CapacityUnit): Capacity = Capacity(this * unit.byteFactor)
-        private fun Float.toCapacity(unit: CapacityUnit): Capacity = Capacity((this * unit.byteFactor).roundToLong())
-        private fun Double.toCapacity(unit: CapacityUnit): Capacity = Capacity((this * unit.byteFactor).roundToLong())
+        /**
+         * Converts a [Number] to a [Capacity], using the given [CapacityUnit].
+         */
+        fun Number.toCapacity(unit: CapacityUnit): Capacity {
+            return when (this) {
+                is Byte -> Capacity(this * unit.byteFactor)
+                is Double -> Capacity((this * unit.byteFactor).roundToLong())
+                is Float -> Capacity((this * unit.byteFactor).roundToLong())
+                is Int -> Capacity(this * unit.byteFactor)
+                is Long -> Capacity(this * unit.byteFactor)
+                is Short -> Capacity(this * unit.byteFactor)
+                else -> {
+                    // Best-effort conversion
+                    Capacity((this.toDouble() * unit.byteFactor).roundToLong())
+                }
+            }
+        }
 
-        // region bytes
-        /** Converts an [Int] representation of bytes to a [Capacity]. */
-        val Int.bytes: Capacity get() = Capacity(toLong())
+        /** Converts a [Number] representation of bytes to a [Capacity]. */
+        val Number.bytes: Capacity get() = toCapacity(CapacityUnit.BYTE)
 
-        /** Converts a [Long] representation of bytes to a [Capacity]. */
-        val Long.bytes: Capacity get() = Capacity(this)
-        // endregion
+        /** Converts a [Number] representation of kibibytes to a [Capacity]. */
+        val Number.kibibytes: Capacity get() = toCapacity(CapacityUnit.KIBIBYTE)
 
-        // region binary units
-        /** Converts an [Int] representation of kibibytes to a [Capacity]. */
-        val Int.kibibytes: Capacity get() = toCapacity(CapacityUnit.KIBIBYTE)
+        /** Converts a [Number] representation of mebibytes to a [Capacity]. */
+        val Number.mebibytes: Capacity get() = toCapacity(CapacityUnit.MEBIBYTE)
 
-        /** Converts an [Int] representation of mebibytes to a [Capacity]. */
-        val Int.mebibytes: Capacity get() = toCapacity(CapacityUnit.MEBIBYTE)
+        /** Converts a [Number] representation of gibibytes to a [Capacity]. */
+        val Number.gibibytes: Capacity get() = toCapacity(CapacityUnit.GIBIBYTE)
 
-        /** Converts an [Int] representation of gibibytes to a [Capacity]. */
-        val Int.gibibytes: Capacity get() = toCapacity(CapacityUnit.GIBIBYTE)
+        /** Converts a [Number] representation of tebibytes to a [Capacity]. */
+        val Number.tebibytes: Capacity get() = toCapacity(CapacityUnit.TEBIBYTE)
 
-        /** Converts an [Int] representation of tebibytes to a [Capacity]. */
-        val Int.tebibytes: Capacity get() = toCapacity(CapacityUnit.TEBIBYTE)
+        /** Converts a [Number] representation of pebibytes to a [Capacity]. */
+        val Number.pebibytes: Capacity get() = toCapacity(CapacityUnit.PEBIBYTE)
 
-        /** Converts an [Int] representation of pebibytes to a [Capacity]. */
-        val Int.pebibytes: Capacity get() = toCapacity(CapacityUnit.PEBIBYTE)
+        /** Converts a [Number] representation of exibytes to a [Capacity]. */
+        val Number.exbibytes: Capacity get() = toCapacity(CapacityUnit.EXBIBYTE)
 
-        /** Converts an [Int] representation of exibytes to a [Capacity]. */
-        val Int.exbibytes: Capacity get() = toCapacity(CapacityUnit.EXBIBYTE)
+        /** Converts a [Number] representation of kilobytes to a [Capacity]. */
+        val Number.kilobytes: Capacity get() = toCapacity(CapacityUnit.KILOBYTE)
 
-        /** Converts a [Long] representation of kibibytes to a [Capacity]. */
-        val Long.kibibytes: Capacity get() = toCapacity(CapacityUnit.KIBIBYTE)
+        /** Converts a [Number] representation of megabytes to a [Capacity]. */
+        val Number.megabytes: Capacity get() = toCapacity(CapacityUnit.MEGABYTE)
 
-        /** Converts a [Long] representation of mebibytes to a [Capacity]. */
-        val Long.mebibytes: Capacity get() = toCapacity(CapacityUnit.MEBIBYTE)
+        /** Converts a [Number] representation of gigabytes to a [Capacity]. */
+        val Number.gigabytes: Capacity get() = toCapacity(CapacityUnit.GIGABYTE)
 
-        /** Converts a [Long] representation of gibibytes to a [Capacity]. */
-        val Long.gibibytes: Capacity get() = toCapacity(CapacityUnit.GIBIBYTE)
+        /** Converts a [Number] representation of terabytes to a [Capacity]. */
+        val Number.terabytes: Capacity get() = toCapacity(CapacityUnit.TERABYTE)
 
-        /** Converts a [Long] representation of tebibytes to a [Capacity]. */
-        val Long.tebibytes: Capacity get() = toCapacity(CapacityUnit.TEBIBYTE)
+        /** Converts a [Number] representation of petabytes to a [Capacity]. */
+        val Number.petabytes: Capacity get() = toCapacity(CapacityUnit.PETABYTE)
 
-        /** Converts a [Long] representation of pebibytes to a [Capacity]. */
-        val Long.pebibytes: Capacity get() = toCapacity(CapacityUnit.PEBIBYTE)
-
-        /** Converts a [Long] representation of exibytes to a [Capacity]. */
-        val Long.exbibytes: Capacity get() = toCapacity(CapacityUnit.EXBIBYTE)
-
-        /** Converts a [Float] representation of kibibytes to a [Capacity]. */
-        val Float.kibibytes: Capacity get() = toCapacity(CapacityUnit.KIBIBYTE)
-
-        /** Converts a [Float] representation of mebibytes to a [Capacity]. */
-        val Float.mebibytes: Capacity get() = toCapacity(CapacityUnit.MEBIBYTE)
-
-        /** Converts a [Float] representation of gibibytes to a [Capacity]. */
-        val Float.gibibytes: Capacity get() = toCapacity(CapacityUnit.GIBIBYTE)
-
-        /** Converts a [Float] representation of tebibytes to a [Capacity]. */
-        val Float.tebibytes: Capacity get() = toCapacity(CapacityUnit.TEBIBYTE)
-
-        /** Converts a [Float] representation of pebibytes to a [Capacity]. */
-        val Float.pebibytes: Capacity get() = toCapacity(CapacityUnit.PEBIBYTE)
-
-        /** Converts a [Float] representation of exibytes to a [Capacity]. */
-        val Float.exbibytes: Capacity get() = toCapacity(CapacityUnit.EXBIBYTE)
-
-        /** Converts a [Double] representation of kibibytes to a [Capacity]. */
-        val Double.kibibytes: Capacity get() = toCapacity(CapacityUnit.KIBIBYTE)
-
-        /** Converts a [Double] representation of mebibytes to a [Capacity]. */
-        val Double.mebibytes: Capacity get() = toCapacity(CapacityUnit.MEBIBYTE)
-
-        /** Converts a [Double] representation of gibibytes to a [Capacity]. */
-        val Double.gibibytes: Capacity get() = toCapacity(CapacityUnit.GIBIBYTE)
-
-        /** Converts a [Double] representation of tebibytes to a [Capacity]. */
-        val Double.tebibytes: Capacity get() = toCapacity(CapacityUnit.TEBIBYTE)
-
-        /** Converts a [Double] representation of pebibytes to a [Capacity]. */
-        val Double.pebibytes: Capacity get() = toCapacity(CapacityUnit.PEBIBYTE)
-
-        /** Converts a [Double] representation of exbibytes to a [Capacity]. */
-        val Double.exbibytes: Capacity get() = toCapacity(CapacityUnit.EXBIBYTE)
-        //endregion
-
-        // region decimal units
-        /** Converts an [Int] representation of kilobytes to a [Capacity]. */
-        val Int.kilobytes: Capacity get() = toCapacity(CapacityUnit.KILOBYTE)
-
-        /** Converts an [Int] representation of megabytes to a [Capacity]. */
-        val Int.megabytes: Capacity get() = toCapacity(CapacityUnit.MEGABYTE)
-
-        /** Converts an [Int] representation of gigabytes to a [Capacity]. */
-        val Int.gigabytes: Capacity get() = toCapacity(CapacityUnit.GIGABYTE)
-
-        /** Converts an [Int] representation of terabytes to a [Capacity]. */
-        val Int.terabytes: Capacity get() = toCapacity(CapacityUnit.TERABYTE)
-
-        /** Converts an [Int] representation of petabytes to a [Capacity]. */
-        val Int.petabytes: Capacity get() = toCapacity(CapacityUnit.PETABYTE)
-
-        /** Converts an [Int] representation of exabytes to a [Capacity]. */
-        val Int.exabytes: Capacity get() = toCapacity(CapacityUnit.EXABYTE)
-
-        /** Converts a [Long] representation of kilobytes to a [Capacity]. */
-        val Long.kilobytes: Capacity get() = toCapacity(CapacityUnit.KILOBYTE)
-
-        /** Converts a [Long] representation of megabytes to a [Capacity]. */
-        val Long.megabytes: Capacity get() = toCapacity(CapacityUnit.MEGABYTE)
-
-        /** Converts a [Long] representation of gigabytes to a [Capacity]. */
-        val Long.gigabytes: Capacity get() = toCapacity(CapacityUnit.GIGABYTE)
-
-        /** Converts a [Long] representation of terabytes to a [Capacity]. */
-        val Long.terabytes: Capacity get() = toCapacity(CapacityUnit.TERABYTE)
-
-        /** Converts a [Long] representation of petabytes to a [Capacity]. */
-        val Long.petabytes: Capacity get() = toCapacity(CapacityUnit.PETABYTE)
-
-        /** Converts a [Long] representation of exabytes to a [Capacity]. */
-        val Long.exabytes: Capacity get() = toCapacity(CapacityUnit.EXABYTE)
-
-        /** Converts a [Float] representation of kilobytes to a [Capacity]. */
-        val Float.kilobytes: Capacity get() = toCapacity(CapacityUnit.KILOBYTE)
-
-        /** Converts a [Float] representation of megabytes to a [Capacity]. */
-        val Float.megabytes: Capacity get() = toCapacity(CapacityUnit.MEGABYTE)
-
-        /** Converts a [Float] representation of gigabytes to a [Capacity]. */
-        val Float.gigabytes: Capacity get() = toCapacity(CapacityUnit.GIGABYTE)
-
-        /** Converts a [Float] representation of terabytes to a [Capacity]. */
-        val Float.terabytes: Capacity get() = toCapacity(CapacityUnit.TERABYTE)
-
-        /** Converts a [Float] representation of petabytes to a [Capacity]. */
-        val Float.petabytes: Capacity get() = toCapacity(CapacityUnit.PETABYTE)
-
-        /** Converts a [Float] representation of exabytes to a [Capacity]. */
-        val Float.exabytes: Capacity get() = toCapacity(CapacityUnit.EXABYTE)
-
-        /** Converts a [Double] representation of kilobytes to a [Capacity]. */
-        val Double.kilobytes: Capacity get() = toCapacity(CapacityUnit.KILOBYTE)
-
-        /** Converts a [Double] representation of megabytes to a [Capacity]. */
-        val Double.megabytes: Capacity get() = toCapacity(CapacityUnit.MEGABYTE)
-
-        /** Converts a [Double] representation of gigabytes to a [Capacity]. */
-        val Double.gigabytes: Capacity get() = toCapacity(CapacityUnit.GIGABYTE)
-
-        /** Converts a [Double] representation of terabytes to a [Capacity]. */
-        val Double.terabytes: Capacity get() = toCapacity(CapacityUnit.TERABYTE)
-
-        /** Converts a [Double] representation of petabytes to a [Capacity]. */
-        val Double.petabytes: Capacity get() = toCapacity(CapacityUnit.PETABYTE)
-
-        /** Converts a [Double] representation of exabytes to a [Capacity]. */
-        val Double.exabytes: Capacity get() = toCapacity(CapacityUnit.EXABYTE)
-        //endregion
+        /** Converts a [Number] representation of exabytes to a [Capacity]. */
+        val Number.exabytes: Capacity get() = toCapacity(CapacityUnit.EXABYTE)
     }
 }
