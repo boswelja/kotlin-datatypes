@@ -76,6 +76,9 @@ value class Temperature internal constructor(private val kelvin: BigDecimal) : C
     @Suppress("unused")
     companion object {
 
+        /**
+         * Converts a [Number] to a [Temperature], using the given [TemperatureUnit].
+         */
         fun Number.toTemperature(unit: TemperatureUnit): Temperature {
             return when (this) {
                 is Byte -> Temperature(unit.toKelvin(this.toBigDecimal()))

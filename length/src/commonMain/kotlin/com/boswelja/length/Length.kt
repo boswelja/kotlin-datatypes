@@ -60,6 +60,9 @@ value class Length(private val meters: BigDecimal): Comparable<Length> {
      */
     companion object {
 
+        /**
+         * Converts a [Number] to a [Length], using the given [LengthUnit].
+         */
         fun Number.toLength(unit: LengthUnit): Length {
             return when (this) {
                 is Byte -> Length(unit.toMeter(this.toBigDecimal()))
