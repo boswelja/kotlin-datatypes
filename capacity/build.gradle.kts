@@ -1,6 +1,5 @@
-import org.jetbrains.dokka.gradle.DokkaTaskPartial
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
-import java.net.URL
+import java.net.URI
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
@@ -96,12 +95,12 @@ publish {
     license = "MIT"
 }
 
-tasks.withType<DokkaTaskPartial>().configureEach {
+dokka {
     dokkaSourceSets.configureEach {
         includes.from("MODULE.md")
         sourceLink {
             localDirectory.set(projectDir.resolve("src"))
-            remoteUrl.set(URL("${publish.repositoryUrl.get()}/tree/main/${project.name}/src"))
+            remoteUrl.set(URI("${publish.repositoryUrl.get()}/tree/main/${project.name}/src"))
             remoteLineSuffix.set("#L")
         }
     }
