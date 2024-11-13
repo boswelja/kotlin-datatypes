@@ -3,6 +3,9 @@ package com.boswelja.length
 import com.ionspin.kotlin.bignum.decimal.BigDecimal
 import com.ionspin.kotlin.bignum.decimal.toBigDecimal
 
+/**
+ * Encapsulates all possible units of [Length].
+ */
 enum class LengthUnit(
     internal val toMeter: (BigDecimal) -> BigDecimal,
     internal val fromMeter: (BigDecimal) -> BigDecimal,
