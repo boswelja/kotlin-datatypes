@@ -9,6 +9,8 @@ bitrate:
   - bitrate/**
 capacity:
   - capacity/**
+length:
+  - length/**
 percentage:
   - percentage/**
 temperature:

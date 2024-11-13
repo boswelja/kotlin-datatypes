@@ -38,7 +38,9 @@ jobs:
     strategy:
       matrix:
         path:
+          - bitrate
           - capacity
+          - length
           - percentage
           - temperature
     steps:
