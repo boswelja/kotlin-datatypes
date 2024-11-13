@@ -104,10 +104,10 @@ value class Bitrate internal constructor(private val rawValue: Long) : Comparabl
 
         /** Converts a [Number] representation of gibibits to a [Bitrate]. */
         val Number.gibibits: Bitrate get() =  toBitrate(BitrateUnit.GIBIBITS)
-        
+
         /** Converts a [Number] representation of tebibits to a [Bitrate]. */
         val Number.tebibits: Bitrate get() =  toBitrate(BitrateUnit.TEBIBITS)
-        
+
         /** Converts a [Number] representation of pebibits to a [Bitrate]. */
         val Number.pebibits: Bitrate get() = toBitrate(BitrateUnit.PEBIBITS)
 
